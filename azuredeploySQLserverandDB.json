@@ -6,7 +6,7 @@
   "name": "ARMtestServerRK2",
   "type": "Microsoft.Sql/servers",
   "apiVersion": "2019-06-01-preview",
-  "location": "East US",
+  "location": "West US",
   "identity": {
     "type": "SystemAssigned"
   },

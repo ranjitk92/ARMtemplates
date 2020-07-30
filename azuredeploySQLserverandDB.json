@@ -24,7 +24,7 @@
   "type": "databases",
   "apiVersion": "2019-06-01-preview",
   "location": "East US",
-  "dependsOn": ["[resourceId('Microsoft.Sql/servers','ARMtestServerRK')]"],
+  "dependsOn": ["[resourceId('Microsoft.Sql/servers','ARMtestServerRK2')]"],
   "tags": {},
   "sku": {
     "name": "Free"

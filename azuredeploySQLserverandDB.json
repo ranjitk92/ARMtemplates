@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "resources": [
         {
-  "name": "ARMtestServerRK",
+  "name": "ARMtestServerRK2",
   "type": "Microsoft.Sql/servers",
   "apiVersion": "2019-06-01-preview",
   "location": "East US",
@@ -20,7 +20,7 @@
         "resources":[
 
                             {
-  "name": "SQLdbTestRK",
+  "name": "SQLdbTestRK2",
   "type": "databases",
   "apiVersion": "2019-06-01-preview",
   "location": "East US",

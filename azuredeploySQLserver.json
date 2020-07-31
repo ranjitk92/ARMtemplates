@@ -1,9 +1,12 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
+    "variables": {
+    "clientname": "$(clientname)"
+  },
     "resources": [
         {
-  "name": "ARMtestServerRK2",
+  "name": "[variables('clientname')]",
   "type": "Microsoft.Sql/servers",
   "apiVersion": "2019-06-01-preview",
   "location": "East US",
@@ -21,4 +24,3 @@
         }   
                 ]
 }
-  

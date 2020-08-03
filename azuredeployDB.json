@@ -15,8 +15,8 @@
   "location": "East US",
   "tags": {},
   "sku": {
-    "name": "Basic",
-    "tier": "Basic"
+    "name": "S0",
+    "tier": "S0"
   }
   
 }

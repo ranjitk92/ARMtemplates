@@ -12,7 +12,7 @@
   "name": "[concat(parameters('DBname'),'/testDB')]",
   "type": "Microsoft.Sql/servers/databases",
   "apiVersion": "2019-06-01-preview",
-  "location": "East US",
+  "location": "Central US",
   "tags": {},
   "sku": {
     "name": "S0",

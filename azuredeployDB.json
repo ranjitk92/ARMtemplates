@@ -16,7 +16,7 @@
   "tags": {},
   "sku": {
     "name": "S0",
-    "tier": "S0"
+    "tier": "Standard"
   }
   
 }

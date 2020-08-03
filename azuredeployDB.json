@@ -9,8 +9,8 @@
     },
     "resources": [
        {
-  "name": "[parameters('DBname')]",
-  "type": "databases",
+  "name": "[concat(parameters('DBname'),'/testDB')]",
+  "type": "Microsoft.Sql/servers/databases",
   "apiVersion": "2019-06-01-preview",
   "location": "string",
   "tags": {},

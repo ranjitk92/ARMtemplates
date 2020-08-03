@@ -10,7 +10,7 @@
     "resources": [
        {
   "name": "[parameters('DBname')]",
-  "type": "Microsoft.Sql/servers/databases",
+  "type": "databases",
   "apiVersion": "2019-06-01-preview",
   "location": "string",
   "tags": {},

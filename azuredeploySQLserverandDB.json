@@ -1,15 +1,21 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
+    "parameters": {
+      "SQLname": {
+        "type": "string",
+        "defaultValue":"defaultname"
+      }
+    },
     "resources": [
         {
-  "name": "ARMtestServerRK2",
+  "name": "[parameters('SQLname')]",
   "type": "Microsoft.Sql/servers",
   "apiVersion": "2019-06-01-preview",
-  "location": "West US",
+  "location": "East US",
   "identity": {
     "type": "SystemAssigned"
-  },
+              },
   "properties": {
     "administratorLogin": "ranjit1",
     "administratorLoginPassword": "testSQL123abc!@#",
@@ -17,23 +23,22 @@
     "minimalTlsVersion": "1.0",
     "publicNetworkAccess": "Enabled"
                 },
-        "resources":[
+      "resources":[
+        {
+          "type": "databases",
+          "apiVersion": "2019-06-01-preview",
+          "name": "rktestsqldb",
+          "sku": {
+            "name": "Standard",
+            "tier": "Standard"
+          },
+          "location": "East US",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', concat(parameters('SQLname')))]"
+      ]
 
-                            {
-  "name": "SQLdbTestRK2",
-  "type": "databases",
-  "apiVersion": "2019-06-01-preview",
-  "location": "East US",
-  "dependsOn": ["[resourceId('Microsoft.Sql/servers','ARMtestServerRK2')]"],
-  "tags": {},
-  "sku": {
-    "name": "Free"
-         }
-  
-                            }
-                    ]
-
-        }   
-                ]
+        }
+        
+      ]
 }
-  
+    ]

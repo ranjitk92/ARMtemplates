@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "DBname": {
+        "type": "string",
+        "defaultValue":"defaultname"
+      }
+    },
+    "resources": [
+       {
+  "name": "[parameters('DBname')]",
+  "type": "Microsoft.Sql/servers/databases",
+  "apiVersion": "2019-06-01-preview",
+  "location": "string",
+  "tags": {},
+  "sku": {
+    "name": "S0",
+    "tier": "Basic"
+  }
+  
+}
+    ]
+}

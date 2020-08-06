@@ -4,7 +4,11 @@
     "parameters": {
       "SQLname": {
         "type": "string",
-        "defaultValue":"defaultname"
+        "defaultValue":"defaultservername"
+      },
+      "DBname": {
+        "type": "string",
+        "defaultValue":"defaultDBname"
       }
     },
     "resources": [
@@ -22,14 +26,14 @@
     "version": "12.0",
     "minimalTlsVersion": "1.0",
     "publicNetworkAccess": "Enabled"
-                },
-      "resources":[
+                }
+        },
         {
-          "type": "databases",
+          "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "2019-06-01-preview",
-          "name": "rktestsqldb",
+          "name": "[parameters('DBname')]",
           "sku": {
-            "name": "Standard",
+            "name": "S0",
             "tier": "Standard"
           },
           "location": "East US",
@@ -38,8 +42,5 @@
       ]
 
         }
-        
-      ]
-}
     ]
 }

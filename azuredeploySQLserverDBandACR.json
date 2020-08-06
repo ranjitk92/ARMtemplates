@@ -24,7 +24,7 @@
         "name": "[parameters('SQLname')]",
         "type": "Microsoft.Sql/servers",
         "apiVersion": "2019-06-01-preview",
-        "location": "East US",
+        "location": "[parameters('Location')]",
         "identity": {
           "type": "SystemAssigned"
                     },
@@ -44,7 +44,7 @@
             "name": "S0",
             "tier": "Standard"
           },
-          "location": "East US",
+          "location": "[parameters('Location')]",
           "dependsOn": [
             "[resourceId('Microsoft.Sql/servers', concat(parameters('SQLname')))]"
                         ]   

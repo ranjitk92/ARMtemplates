@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters":{
+    "ACRname": {
+        "type": "string",
+        "defaultValue":"defaultname"
+    },
+    "Location": {
+        "type": "string",
+        "defaultValue":"East US"
+    }
+  },
+  "resources": [
+      {
+  "name": "[parameters('ACRname')]",
+  "type": "Microsoft.ContainerRegistry/registries",
+  "apiVersion": "2019-12-01-preview",
+  "location": "[parameters('Location')]",
+  "sku": {
+    "name": "Standard"
+  }
+      }
+  ]
+}

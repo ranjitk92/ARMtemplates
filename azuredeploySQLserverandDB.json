@@ -13,21 +13,21 @@
     },
     "resources": [
         {
-  "name": "[parameters('SQLname')]",
-  "type": "Microsoft.Sql/servers",
-  "apiVersion": "2019-06-01-preview",
-  "location": "East US",
-  "identity": {
-    "type": "SystemAssigned"
+        "name": "[parameters('SQLname')]",
+        "type": "Microsoft.Sql/servers",
+        "apiVersion": "2019-06-01-preview",
+        "location": "East US",
+        "identity": {
+          "type": "SystemAssigned"
+                    },
+        "properties": {
+          "administratorLogin": "ranjit1",
+          "administratorLoginPassword": "testSQL123abc!@#",
+          "version": "12.0",
+          "minimalTlsVersion": "1.0",
+          "publicNetworkAccess": "Enabled"
+                      }
               },
-  "properties": {
-    "administratorLogin": "ranjit1",
-    "administratorLoginPassword": "testSQL123abc!@#",
-    "version": "12.0",
-    "minimalTlsVersion": "1.0",
-    "publicNetworkAccess": "Enabled"
-                }
-        },
         {
           "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "2019-06-01-preview",
@@ -39,7 +39,7 @@
           "location": "East US",
           "dependsOn": [
             "[resourceId('Microsoft.Sql/servers', concat(parameters('SQLname')))]"
-      ]
+                        ]   
 
         }
     ]

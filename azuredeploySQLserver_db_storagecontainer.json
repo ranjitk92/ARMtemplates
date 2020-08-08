@@ -6,10 +6,7 @@
         "type": "string",
         "defaultValue":"defaultservername"
       },
-      "DBname": {
-        "type": "string",
-        "defaultValue":"defaultDBname"
-      },
+
       "blobstoragecontainer": {
           "type": "string",
           "defaultValue": "defaultblobstoragename"
@@ -35,9 +32,9 @@
     },
     "resources": [
         {
-        "name": "[parameters('SQLname')]",
         "type": "Microsoft.Sql/servers",
         "apiVersion": "2019-06-01-preview",
+        "name": "[parameters('SQLname')]",
         "location": "[parameters('Location')]",
         "tags": "[parameters('resourceTags')]",
         "identity": {
@@ -51,20 +48,7 @@
           "publicNetworkAccess": "Enabled"
                       }
         },
-        {
-          "type": "Microsoft.Sql/servers/databases",
-          "apiVersion": "2019-06-01-preview",
-          "name": "[concat(parameters('DBname'),'/SQLdb')]",
-          "tags": "[parameters('resourceTags')]",
-          "sku": {
-            "name": "S0",
-            "tier": "Standard"
-                },
-          "location": "[parameters('Location')]",
-          "dependsOn": [
-            "[resourceId('Microsoft.Sql/servers', concat(parameters('SQLname')))]"
-                        ]   
-        },
+        
         {
            "type": "Microsoft.Storage/storageAccounts",
            "apiVersion": "2019-06-01",

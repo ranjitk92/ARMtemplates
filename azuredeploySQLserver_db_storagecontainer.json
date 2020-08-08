@@ -34,7 +34,7 @@
           "type": "string",
           "defaultValue":"East US",
           "metadata": {
-            "description": "Specifies a default location for resource deployment"
+            "description": "Specifies a default location for resource deployment."
             }
       },
       "resourceTags": {
@@ -42,7 +42,7 @@
           "defaultValue": {
               "client":"[parameters('clienttag')]",
           "metadata": {
-            "description": "Used for creating tags for ease of searching and parameter in this field will be overwritten in pipeline run."
+            "description": "Used for creating tags for ease of searching. Parameter in this field will be overwritten in pipeline run."
             }
           }
       },
@@ -50,7 +50,7 @@
           "type": "string",
           "defaultValue":"defaulttag",
           "metadata": {
-            "description": "Parameter created to pass through in resourceTags parameter"
+            "description": "Parameter created to pass through in resourceTags parameter."
             }
       }
     },

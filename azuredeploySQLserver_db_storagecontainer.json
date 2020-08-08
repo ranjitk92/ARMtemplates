@@ -67,7 +67,7 @@
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
             "apiVersion": "2019-06-01",
-            "name": "[concat('test/default/', parameters('blobstoragecontainer'))]",
+            "name": "[concat(parameters('blobstoragecontainer'),'/storage/container')]",
             "tags": "[parameters('resourceTags')]", 
             "dependsOn": [
                 "[parameters('storageaccount')]"

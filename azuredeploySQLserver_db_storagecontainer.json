@@ -1,0 +1,112 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "SQLname": {
+        "type": "string",
+        "defaultValue":"defaultservername",
+        "metadata": {
+            "description": "Specifies name of SQL server and will be overwritten in pipeline run."
+            }
+      },
+      "DBname": {
+        "type": "string",
+        "defaultValue":"defaultDBname",
+        "metadata": {
+            "description": "Specifies name of SQL database and will be overwritten in pipeline run."
+            }
+      },
+      "blobstoragecontainer": {
+          "type": "string",
+          "defaultValue": "defaultblobstoragename",
+          "metadata": {
+              "description": "Specifies name of blob storage container and will be overwritten in pipeline run."
+          }
+      },
+      "storageaccount": {
+          "type": "string",
+          "defaultValue": "clientliststorageaccount",
+          "metadata": {
+              "description": "Default storage account name that acts as a master resource for unique containers to depend on inside this template."
+          }
+      },
+      "Location": {
+          "type": "string",
+          "defaultValue":"East US",
+          "metadata": {
+            "description": "Specifies a default location for resource deployment"
+            }
+      },
+      "resourceTags": {
+          "type": "object",
+          "defaultValue": {
+              "client":"[parameters('clienttag')]",
+          "metadata": {
+            "description": "Used for creating tags for ease of searching and parameter in this field will be overwritten in pipeline run."
+            }
+          }
+      },
+      "clienttag":{
+          "type": "string",
+          "defaultValue":"defaulttag",
+          "metadata": {
+            "description": "Parameter created to pass through in resourceTags parameter"
+            }
+      }
+    },
+    "resources": [
+        {
+        "name": "[concat(parameters('SQLname'),'SQLserver')]",
+        "type": "Microsoft.Sql/servers",
+        "apiVersion": "2019-06-01-preview",
+        "location": "[parameters('Location')]",
+        "tags": "[parameters('resourceTags')]",
+        "identity": {
+          "type": "SystemAssigned"
+                    },
+        "properties": {
+          "administratorLogin": "ranjit1",
+          "administratorLoginPassword": "testSQL123abc!@#",
+          "version": "12.0",
+          "minimalTlsVersion": "1.0",
+          "publicNetworkAccess": "Enabled"
+                      }
+              },
+        {
+          "type": "Microsoft.Sql/servers/databases",
+          "apiVersion": "2019-06-01-preview",
+          "name": "[concat(parameters('DBname'),'/SQLdb')]",
+          "tags": "[parameters('resourceTags')]",
+          "sku": {
+            "name": "S0",
+            "tier": "Standard"
+                },
+          "location": "[parameters('Location')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', concat(parameters('SQLname')))]"
+                        ]   
+        },
+        {
+           "type": "Microsoft.Storage/storageAccounts",
+           "apiVersion": "2019-06-01",
+           "name": "[parameters('storageaccount')]",
+           "location": "[parameters('Location')]",
+           "sku":{
+               "name": "Standard_LRS",
+               "tier": "Standard"
+                },
+            "kind": "StorageV2",
+            "properties": {
+                "accessTier": "Hot"
+                            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(parameters('blobstoragecontainer'),'/storagecontainer')]",
+            "dependsOn": [
+                "[parameters('storageaccount')]"
+            ]
+        }
+    ]
+}

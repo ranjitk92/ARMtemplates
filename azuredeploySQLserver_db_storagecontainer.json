@@ -4,17 +4,11 @@
     "parameters": {
       "SQLname": {
         "type": "string",
-        "defaultValue":"defaultservername",
-        "metadata": {
-            "description": "Specifies name of SQL server and will be overwritten in pipeline run."
-            }
+        "defaultValue":"defaultservername"
       },
       "DBname": {
         "type": "string",
-        "defaultValue":"defaultDBname",
-        "metadata": {
-            "description": "Specifies name of SQL database and will be overwritten in pipeline run."
-            }
+        "defaultValue":"defaultDBname"
       },
       "blobstoragecontainer": {
           "type": "string",
@@ -25,33 +19,21 @@
       },
       "storageaccount": {
           "type": "string",
-          "defaultValue": "clientliststorageaccount",
-          "metadata": {
-              "description": "Default storage account name that acts as a master resource for unique containers to depend on inside this template."
-          }
+          "defaultValue": "clientliststorageaccount"
       },
       "Location": {
           "type": "string",
-          "defaultValue":"East US",
-          "metadata": {
-            "description": "Specifies a default location for resource deployment."
-            }
+          "defaultValue":"East US"
       },
       "resourceTags": {
           "type": "object",
           "defaultValue": {
-              "client":"[parameters('clienttag')]",
-          "metadata": {
-            "description": "Used for creating tags for ease of searching. Parameter in this field will be overwritten in pipeline run."
-            }
+              "client":"[parameters('clienttag')]"
           }
       },
       "clienttag":{
           "type": "string",
-          "defaultValue":"defaulttag",
-          "metadata": {
-            "description": "Parameter created to pass through in resourceTags parameter."
-            }
+          "defaultValue":"defaulttag"
       }
     },
     "resources": [

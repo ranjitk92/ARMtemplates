@@ -12,10 +12,7 @@
       },
       "blobstoragecontainer": {
           "type": "string",
-          "defaultValue": "defaultblobstoragename",
-          "metadata": {
-              "description": "Specifies name of blob storage container and will be overwritten in pipeline run."
-          }
+          "defaultValue": "defaultblobstoragename"
       },
       "storageaccount": {
           "type": "string",

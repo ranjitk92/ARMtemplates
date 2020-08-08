@@ -35,7 +35,7 @@
     },
     "resources": [
         {
-        "name": "[concat(parameters('SQLname'),'SQLserver')]",
+        "name": "[parameters('SQLname')]",
         "type": "Microsoft.Sql/servers",
         "apiVersion": "2019-06-01-preview",
         "location": "[parameters('Location')]",

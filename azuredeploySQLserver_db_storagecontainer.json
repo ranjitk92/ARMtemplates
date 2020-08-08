@@ -71,7 +71,7 @@
           "minimalTlsVersion": "1.0",
           "publicNetworkAccess": "Enabled"
                       }
-              },
+        },
         {
           "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "2019-06-01-preview",
@@ -106,7 +106,7 @@
             "name": "[concat(parameters('blobstoragecontainer'),'/storagecontainer')]",
             "tags": "[parameters('resourceTags')]", 
             "dependsOn": [
-                "[parameters('storageaccount')]"
+                "[resourceId('Microsoft.Storage/storageAccounts', concat(parameters('storageaccount')))]"
             ]
         }
     ]

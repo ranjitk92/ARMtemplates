@@ -70,7 +70,7 @@
             "name": "[concat(parameters('blobstoragecontainer'),'/test/default')]",
             "tags": "[parameters('resourceTags')]", 
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat(parameters('storageaccount')))]"
+                "[parameters('storageaccount')]"
                         ]
         }
                             ]

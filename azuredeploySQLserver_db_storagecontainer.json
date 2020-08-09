@@ -6,11 +6,6 @@
         "type": "string",
         "defaultValue":"defaultservername"
       },
-
-      "blobstoragecontainer": {
-          "type": "string",
-          "defaultValue": "defaultblobstoragename"
-      },
       "storageaccount": {
           "type": "string",
           "defaultValue": "clientliststorageaccount"
@@ -67,8 +62,11 @@
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
             "apiVersion": "2019-06-01",
-            "name": "[concat(parameters('blobstoragecontainer'),'/storage/container')]",
-            "tags": "[parameters('resourceTags')]"
+            "name": "alexjohnmax/storage/container",
+            "tags": "[parameters('resourceTags')]",
+            "dependsOn": [
+                "[parameters('storageaccount')]"
+            ]
         
         }
             ]

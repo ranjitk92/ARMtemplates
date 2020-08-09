@@ -10,6 +10,10 @@
           "type": "string",
           "defaultValue": "clientliststorageaccount"
       },
+        "blobstoragecontainer": {
+          "type": "string",
+          "defaultValue": "defaultblobstoragename"
+      },
       "Location": {
           "type": "string",
           "defaultValue":"East US"
@@ -43,7 +47,6 @@
           "publicNetworkAccess": "Enabled"
                       }
         },
-        
         {
            "type": "Microsoft.Storage/storageAccounts",
            "apiVersion": "2019-06-01",
@@ -57,12 +60,11 @@
             "properties": {
                 "accessTier": "Hot"
                             }
-        },
-        
+        }, 
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
             "apiVersion": "2019-06-01",
-            "name": "alexjohnmax/storage/container",
+            "name": "[concat(parameters('blobstoragecontainer'),'/storage','/container')]",
             "tags": "[parameters('resourceTags')]",
             "dependsOn": [
                 "[parameters('storageaccount')]"

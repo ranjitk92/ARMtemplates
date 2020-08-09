@@ -61,19 +61,15 @@
             "kind": "StorageV2",
             "properties": {
                 "accessTier": "Hot"
-                            },
-            "resources": [
+                            }
+        },
         
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
             "apiVersion": "2019-06-01",
             "name": "[concat(parameters('blobstoragecontainer'),'/storage/container')]",
-            "tags": "[parameters('resourceTags')]", 
-            "dependsOn": [
-                "[parameters('storageaccount')]"
-                        ]
-        }
-                            ]
+            "tags": "[parameters('resourceTags')]"
+        
         }
             ]
 }

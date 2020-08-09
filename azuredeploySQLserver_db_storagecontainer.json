@@ -63,8 +63,8 @@
         }, 
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-            "apiVersion": "2019-04-01",
-            "name": "[concat('default/',parameters('blobstoragecontainer'))]",
+            "apiVersion": "2019-06-01",
+            "name": "[concat('default/',parameters('blobstoragecontainer'),'/clientcontainer')]",
             "tags": "[parameters('resourceTags')]",
             "dependsOn": [
                 "[parameters('storageaccount')]"

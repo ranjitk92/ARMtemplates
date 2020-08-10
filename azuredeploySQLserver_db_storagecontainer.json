@@ -6,6 +6,10 @@
         "type": "string",
         "defaultValue":"defaultservername"
       },
+        "DBname": {
+        "type": "string",
+        "defaultValue":"defaultDBname"
+      },
       "storageaccount": {
           "type": "string",
           "defaultValue": "clientliststorageaccount"
@@ -48,6 +52,20 @@
                       }
         },
         {
+          "type": "Microsoft.Sql/servers/databases",
+          "apiVersion": "2019-06-01-preview",
+          "name": "[concat(parameters('SQLname'),'/',parameters('DBname'),'database')]",
+          "tags": "[parameters('resourceTags')]",
+          "sku": {
+            "name": "S0",
+            "tier": "Standard"
+                },
+          "location": "[parameters('Location')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', concat(parameters('SQLname')))]"
+                        ]   
+        },
+        {
            "type": "Microsoft.Storage/storageAccounts",
            "apiVersion": "2019-06-01",
            "name": "[parameters('storageaccount')]",
@@ -68,8 +86,8 @@
             "tags": "[parameters('resourceTags')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts',parameters('storageaccount'))]"
-            ]
+                        ]
         
         }
-            ]
+    ]
 }

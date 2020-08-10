@@ -4,7 +4,10 @@
     "parameters": {
       "SQLname": {
         "type": "string",
-        "defaultValue":"defaultservername"
+        "defaultValue":"defaultservername",
+        "metadata": {
+            "description":"Will be overwritten in pipeline run with client name."
+        }
       },
         "DBname": {
         "type": "string",
@@ -56,12 +59,12 @@
           "apiVersion": "2019-06-01-preview",
           "name": "[concat(parameters('SQLname'),'/',parameters('DBname'),'database')]",
           "tags": "[parameters('resourceTags')]",
-          "sku": {
+          "sku":    {
             "name": "S0",
             "tier": "Standard"
-                },
+                    },
           "location": "[parameters('Location')]",
-          "dependsOn": [
+          "dependsOn":  [
             "[resourceId('Microsoft.Sql/servers', concat(parameters('SQLname')))]"
                         ]   
         },
@@ -75,7 +78,7 @@
                "tier": "Standard"
                 },
             "kind": "StorageV2",
-            "properties": {
+            "properties":   {
                 "accessTier": "Hot"
                             }
         }, 

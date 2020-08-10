@@ -11,29 +11,47 @@
       },
         "DBname": {
         "type": "string",
-        "defaultValue":"defaultDBname"
+        "defaultValue":"defaultDBname",
+        "metadata": {
+            "description":"Will be overwritten in pipeline run with client name."
+        }
       },
       "storageaccount": {
           "type": "string",
-          "defaultValue": "clientliststorageaccount"
+          "defaultValue": "clientliststorageaccount",
+          "metadata": {
+              "description":"Default value will be used for the main name and this will act as a master storage account for blob containers to fall under."
+          }
       },
         "blobstoragecontainer": {
           "type": "string",
-          "defaultValue": "defaultblobstoragename"
+          "defaultValue": "defaultblobstoragename",
+          "metadata": {
+              "description":"Will be overwritten in pipeline run with client name."
+          }
       },
       "Location": {
           "type": "string",
-          "defaultValue":"East US"
+          "defaultValue":"East US",
+          "metadata": {
+              "description":"Default location for resources to be created in."
+          }
       },
       "resourceTags": {
           "type": "object",
           "defaultValue": {
               "client":"[parameters('clienttag')]"
+          },
+          "metadata": {
+              "description":"The parameter above will be overwritten in the pipeline run with the client name."
           }
       },
       "clienttag":{
           "type": "string",
-          "defaultValue":"defaulttag"
+          "defaultValue":"defaulttag",
+          "metadata": {
+              "description":"Created this parameter to pass into resourceTags."
+          }
       }
     },
     "resources": [

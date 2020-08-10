@@ -32,9 +32,9 @@
       },
       "Location": {
           "type": "string",
-          "defaultValue":"East US",
+          "defaultValue":"[resourceGroup().location]",
           "metadata": {
-              "description":"Default location for resources to be created in."
+              "description":"Default location for resources to be created in and depends on the resource group location."
           }
       },
       "resourceTags": {

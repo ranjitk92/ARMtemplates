@@ -1,0 +1,37 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "SQLnamearray": {
+        "type": "array",
+        "defaultValue": [
+          "defaultarrayname",
+          "seconddefaultarrayname"
+        ]
+      }
+    },
+    "resources": [
+        {
+  "name": "[concat(parameters('SQLnamearray')[copyIndex()])]",
+  "type": "Microsoft.Sql/servers",
+  "apiVersion": "2019-06-01-preview",
+  "location": "East US",
+  "copy": {
+    "name": "SQLservercopy",
+    "count":"[length(parameters('SQLnamearray'))]"
+  },
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "administratorLogin": "ranjit1",
+    "administratorLoginPassword": "testSQL123abc!@#",
+    "version": "12.0",
+    "minimalTlsVersion": "1.0",
+    "publicNetworkAccess": "Enabled"
+                }
+
+        }   
+                ]
+}
+  

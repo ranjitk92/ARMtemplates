@@ -4,7 +4,7 @@
   "parameters":{
     "ACRname": {
         "type": "string",
-        "defaultValue":"defaultname"
+        "defaultValue":"defaultnames"
     },
     "Location": {
         "type": "string",

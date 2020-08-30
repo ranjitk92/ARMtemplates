@@ -18,7 +18,7 @@
       },
       "storageaccount": {
           "type": "string",
-          "defaultValue": "clientliststorageaccount2",
+          "defaultValue": "clientliststorage2",
           "metadata": {
               "description":"Default value will be used for the main name and this will act as a master storage account for blob containers to fall under."
           }

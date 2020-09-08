@@ -5,7 +5,7 @@
         "administratorPassword":{
             "reference":{
                 "keyVault":{
-                    "id":"/subscriptions/c731920e-f389-4198-98b9-bb54ff8f6bde/resourceGroups/RgPStest/providers/Microsoft.KeyVaults/vaults/SQLDBlogin"
+                    "id":"/subscriptions/c731920e-f389-4198-98b9-bb54ff8f6bde/resourceGroups/RgPStest/providers/Microsoft.KeyVault/vaults/SQLDBlogin"
                 },
                 "secretName":"SQLDBlogin"
             }

@@ -23,7 +23,7 @@
             "properties": {
                 "repoConfiguration": {
                     "accountName": "ranjitk92",
-                    "repositoryName": "ADFtesting",
+                    "repositoryName": "ADFtesting2",
                     "collaborationBranch": "master",
                     "rootFolder": "/",
                     "type": "FactoryGitHubConfiguration"

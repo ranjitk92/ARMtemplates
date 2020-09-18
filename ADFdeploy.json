@@ -23,7 +23,7 @@
             "properties": {
                 "repoConfiguration": {
                     "accountName": "ranjitk92",
-                    "repositoryName": "ADFtesting2",
+                    "repositoryName": "RaspberryPiFiles",
                     "collaborationBranch": "master",
                     "rootFolder": "/",
                     "type": "FactoryGitHubConfiguration"

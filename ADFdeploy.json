@@ -20,10 +20,19 @@
             "apiVersion": "2018-06-01",
             "name": "[concat(parameters('factoryName'),'ADF')]",
             "location":"[parameters('ADFLocation')]",
-            "properties": {},
+            "properties": {
+                "repoConfiguration": {
+                    "accountName": "ranjitk92",
+                    "repositoryName": "ADFtesting",
+                    "collaborationBranch": "master",
+                    "rootFolder": "/",
+                    "type": "FactoryGitHubConfiguration"
+                }
+            },
             "identity": {
                 "type": "SystemAssigned"
             }
+        
         }
     ]
 }

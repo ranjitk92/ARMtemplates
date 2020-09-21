@@ -18,7 +18,7 @@
         {
             "type":"Microsoft.DataFactory/factories",
             "apiVersion": "2018-06-01",
-            "name": "[concat(parameters('factoryName'),'ADF')]",
+            "name": "[concat(parameters('factoryName'),'ADF-DEV')]",
             "location":"[parameters('ADFLocation')]",
             "properties": {
                 "repoConfiguration": {
@@ -32,7 +32,16 @@
             "identity": {
                 "type": "SystemAssigned"
             }
-        
+        },
+        {
+            "type":"Microsoft.DataFactory/factories",
+            "apiVersion": "2018-06-01",
+            "name": "[concat(parameters('factoryName'),'ADF-TEST')]",
+            "location":"[parameters('ADFLocation')]",
+            "properties": {},
+            "identity": {
+                "type": "SystemAssigned"
+            }
         }
     ]
 }

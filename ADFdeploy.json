@@ -6,13 +6,21 @@
             "type": "string",
             "metadata": "Default Factory Name",
             "defaultValue":"ADFnameRK"
-            },
+        },
         "ADFLocation": {
             "type": "string",
             "defaultValue": "[resourceGroup().location]",
             "metadata": "Location of ADF deployment based on Resource Group location."
+        },
+        "AzureKeyVaultBaseUrl": {
+            "type": "string",
+            "defaultValue":"https://sqldblogin.vault.azure.net/",
+            "metadata": "Url for Azure Key Vault."
+        },
+        "AzureContainerKeyVault": {
+            "type": "string",
+            "defaultValue":"AzureStorageAccountKey"
         }
-
     },
     "resources": [
         {
@@ -31,6 +39,38 @@
             },
             "identity": {
                 "type": "SystemAssigned"
+            }
+        },
+        {
+            "type": "Microsoft.DataFactory/factories/linkedservices",
+            "apiVersion": "2018-06-01",
+            "name": "[concat(parameters('factoryName'),'ADF-DEV','/AzureKeyVaultLinkedService')]",
+            "properties": {
+                "description":"Linked service for Azure Key Vault.",
+                "type": "AzureKeyVault",
+                "typeProperties": {
+                    "baseUrl": "[parameters('AzureKeyVaultBaseUrl')]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "type": "Microsoft.DataFactory/factories/linkedservices",
+            "apiVersion": "2018-06-01",
+            "name": "[concat(parameters('factoryName'),'ADF-DEV','/AzureContainerLinkedService')]",
+            "properties": {
+                "description":"Linked service for storage container.",
+                "type": "AzureBlobStorage",
+                "typeProperties":{
+                    "connectionString": {
+                        "type":"AzureKeyVaultSecret",
+                        "store":{
+                            "referenceName":"AzureKeyVault1",
+                            "type":"LinkedServiceReference"
+                        },
+                        "secretName":"[parameters('AzureContainerKeyVault')]"
+                    }
+                }
             }
         },
         {

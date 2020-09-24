@@ -19,7 +19,8 @@
         },
         "AzureContainerKeyVault": {
             "type": "string",
-            "defaultValue":"AzureStorageAccountKey"
+            "defaultValue":"AzureStorageAccountKey",
+            "metadata":"Connection string inside Key Vault"
         }
     },
     "resources": [

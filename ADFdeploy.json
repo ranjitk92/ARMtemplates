@@ -32,7 +32,7 @@
             "properties": {
                 "repoConfiguration": {
                     "accountName": "ranjitk92",
-                    "repositoryName": "ADFtesting2",
+                    "repositoryName": "ADFtesting",
                     "collaborationBranch": "master",
                     "rootFolder": "/",
                     "type": "FactoryGitHubConfiguration"
@@ -55,6 +55,9 @@
             },
             "dependsOn": []
         },
+
+### Need to update Key Vault Policies for Get and Principal ID/App ID of Data Factory
+
         {
             "type": "Microsoft.DataFactory/factories/linkedservices",
             "apiVersion": "2018-06-01",

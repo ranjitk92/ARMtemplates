@@ -1,0 +1,199 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "SQLname": {
+        "type": "string",
+        "defaultValue":"defaultservername",
+        "metadata": {
+            "description":"Will be overwritten in pipeline run with client name."
+        }
+      },
+      "administratorPassword": {
+          "type": "securestring"
+      },
+      "DBname": {
+        "type": "string",
+        "defaultValue":"defaultDBname",
+        "metadata": {
+            "description":"Will be overwritten in pipeline run with client name."
+        }
+      },
+      "storageaccount": {
+          "type": "string",
+          "defaultValue": "clientliststorage2",
+          "metadata": {
+              "description":"Default value will be used for the main name and this will act as a master storage account for blob containers to fall under."
+          }
+      },
+        "blobstoragecontainer": {
+          "type": "string",
+          "defaultValue": "defaultblobstoragename",
+          "metadata": {
+              "description":"Will be overwritten in pipeline run with client name."
+          }
+      },
+      "Location": {
+          "type": "string",
+          "defaultValue":"[resourceGroup().location]",
+          "metadata": {
+              "description":"Default location for resources to be created in and depends on the resource group location."
+          }
+      },
+      "resourceTags": {
+          "type": "object",
+          "defaultValue": {
+              "client":"[parameters('clienttag')]"
+          },
+          "metadata": {
+              "description":"The parameter above will be overwritten in the pipeline run with the client name."
+          }
+      },
+      "clienttag":{
+          "type": "string",
+          "defaultValue":"defaulttag",
+          "metadata": {
+              "description":"Created this parameter to pass into resourceTags."
+          }
+      },
+      "factoryName": {
+            "type": "string",
+            "metadata": "Default Factory Name",
+            "defaultValue":"ADFnameRK"
+      },
+        "ADFLocation": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": "Location of ADF deployment based on Resource Group location."
+      },
+        "AzureKeyVaultBaseUrl": {
+            "type": "string",
+            "defaultValue":"https://sqldblogin.vault.azure.net/",
+            "metadata": "Url for Azure Key Vault."
+      },
+        "AzureContainerKeyVault": {
+            "type": "string",
+            "defaultValue":"AzureStorageAccountKey",
+            "metadata":"Connection string inside Key Vault"
+      }
+
+},
+
+    "resources": [
+        {
+        "type": "Microsoft.Sql/servers",
+        "apiVersion": "2019-06-01-preview",
+        "name": "[parameters('SQLname')]",
+        "location": "[parameters('Location')]",
+        "tags": "[parameters('resourceTags')]",
+        "identity": {
+          "type": "SystemAssigned"
+                    },
+        "properties": {
+          "administratorLogin": "ranjit1",
+          "administratorLoginPassword": "[parameters('administratorPassword')]",
+          "version": "12.0",
+          "minimalTlsVersion": "1.0",
+          "publicNetworkAccess": "Enabled"
+                      }
+        },
+        {
+          "type": "Microsoft.Sql/servers/databases",
+          "apiVersion": "2019-06-01-preview",
+          "name": "[concat(parameters('SQLname'),'/',parameters('DBname'),'database')]",
+          "tags": "[parameters('resourceTags')]",
+          "sku":    {
+            "name": "S0",
+            "tier": "Standard"
+                    },
+          "location": "[parameters('Location')]",
+          "dependsOn":  [
+            "[resourceId('Microsoft.Sql/servers', concat(parameters('SQLname')))]"
+                        ]   
+        },
+        {
+           "type": "Microsoft.Storage/storageAccounts",
+           "apiVersion": "2019-06-01",
+           "name": "[parameters('storageaccount')]",
+           "location": "[parameters('Location')]",
+           "sku":{
+               "name": "Standard_LRS",
+               "tier": "Standard"
+                },
+            "kind": "StorageV2",
+            "properties":   {
+                "accessTier": "Hot"
+                            }
+        }, 
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(parameters('storageaccount'),'/default/',parameters('blobstoragecontainer'))]",
+            "tags": "[parameters('resourceTags')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts',parameters('storageaccount'))]"
+                        ]
+        
+        },
+        {
+            "type":"Microsoft.DataFactory/factories",
+            "apiVersion": "2018-06-01",
+            "name": "[concat(parameters('factoryName'),'ADF-DEV')]",
+            "location":"[parameters('ADFLocation')]",
+            "properties": {
+                "repoConfiguration": {
+                    "accountName": "ranjitk92",
+                    "repositoryName": "ADFtesting",
+                    "collaborationBranch": "master",
+                    "rootFolder": "/",
+                    "type": "FactoryGitHubConfiguration"
+                }
+            },
+            "identity": {
+                "type": "SystemAssigned"
+            }
+        },
+        {
+            "type": "Microsoft.DataFactory/factories/linkedservices",
+            "apiVersion": "2018-06-01",
+            "name": "[concat(parameters('factoryName'),'ADF-DEV','/AzureKeyVaultLinkedService')]",
+            "properties": {
+                "description":"Linked service for Azure Key Vault.",
+                "type": "AzureKeyVault",
+                "typeProperties": {
+                    "baseUrl": "[parameters('AzureKeyVaultBaseUrl')]"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "type": "Microsoft.DataFactory/factories/linkedservices",
+            "apiVersion": "2018-06-01",
+            "name": "[concat(parameters('factoryName'),'ADF-DEV','/AzureContainerLinkedService')]",
+            "properties": {
+                "description":"Linked service for storage container.",
+                "type": "AzureBlobStorage",
+                "typeProperties":{
+                    "connectionString": {
+                        "type":"AzureKeyVaultSecret",
+                        "store":{
+                            "referenceName":"AzureKeyVault1",
+                            "type":"LinkedServiceReference"
+                        },
+                        "secretName":"[parameters('AzureContainerKeyVault')]"
+                    }
+                }
+            }
+        },
+        {
+            "type":"Microsoft.DataFactory/factories",
+            "apiVersion": "2018-06-01",
+            "name": "[concat(parameters('factoryName'),'ADF-TEST')]",
+            "location":"[parameters('ADFLocation')]",
+            "properties": {},
+            "identity": {
+                "type": "SystemAssigned"
+            }
+        }
+    ]
+}

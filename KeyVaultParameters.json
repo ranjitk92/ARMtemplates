@@ -5,7 +5,7 @@
         "administratorPassword":{
             "reference":{
                 "keyVault":{
-                    "id":"/subscriptions/c731920e-f389-4198-98b9-bb54ff8f6bde/resourceGroups/RgPStest/providers/Microsoft.KeyVault/vaults/SQLDBlogin"
+                    "id":"/subscriptions/ca4c7cc2-45ba-40d6-888e-34751874ab55/resourceGroups/RgPStest/providers/Microsoft.KeyVault/vaults/ClientResourceKeyVault"
                 },
                 "secretName":"SQLDBlogin"
             }
@@ -13,7 +13,7 @@
         "AzureStorageAccountConnectionString":{
             "reference": {
                 "keyVault": {
-                    "id":"/subscriptions/c731920e-f389-4198-98b9-bb54ff8f6bde/resourceGroups/RgPStest/providers/Microsoft.KeyVault/vaults/SQLDBlogin"
+                    "id":"/subscriptions/ca4c7cc2-45ba-40d6-888e-34751874ab55/resourceGroups/RgPStest/providers/Microsoft.KeyVault/vaults/ClientResourceKeyVault"
                 },
                 "secretName": "AzureStorageAccountKey"
             }

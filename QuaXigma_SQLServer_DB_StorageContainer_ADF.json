@@ -71,7 +71,7 @@
             "defaultValue":"https://sqldblogin.vault.azure.net/",
             "metadata": "Url for Azure Key Vault."
       },
-        "AzureContainerKeyVault": {
+        "AzureStorageAccountConnectionString": {
             "type": "string",
             "defaultValue":"AzureStorageAccountKey",
             "metadata":"Connection string inside Key Vault"

@@ -96,7 +96,7 @@
                     },
         "properties": {
           "administratorLogin": "QuaXigmalogin",
-          "administratorLoginPassword": "Ranjit123",
+          "administratorLoginPassword": "[parameters('administratorPassword')]",
           "version": "12.0",
           "minimalTlsVersion": "1.0",
           "publicNetworkAccess": "Enabled"
@@ -107,6 +107,7 @@
           "apiVersion": "2019-06-01-preview",
           "name": "[concat(parameters('SQLname'),'/',parameters('DBname'),'database')]",
           "tags": "[parameters('resourceTags')]",
+          "properties":{},
           "sku":    {
             "name": "S0",
             "tier": "Standard"
@@ -194,6 +195,25 @@
                 }
             },
             "dependsOn": []
+        },
+        {
+            "type": "Microsoft.DataFactory/factories/linkedservices",
+            "apiVersion": "2018-06-01",
+            "name": "[concat(parameters('factoryName'),'ADF-DEV','/AzureContainerLinkedService')]",
+            "properties": {
+                "description":"Linked service for storage container.",
+                "type": "AzureBlobStorage",
+                "typeProperties":{
+                    "connectionString": {
+                        "type":"AzureKeyVaultSecret",
+                        "store":{
+                            "referenceName":"AzureKeyVaultLinkedService",
+                            "type":"LinkedServiceReference"
+                        },
+                        "secretName":"[parameters('AzureStorageAccountConnectionString')]"
+                    }
+                }
+            }
         },
         {
             "type":"Microsoft.DataFactory/factories",

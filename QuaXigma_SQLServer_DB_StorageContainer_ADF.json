@@ -144,7 +144,7 @@
         {
             "type":"Microsoft.DataFactory/factories",
             "apiVersion": "2018-06-01",
-            "name": "[concat(parameters('factoryName'),'ADF-DEV')]",
+            "name": "[parameters('factoryName')]",
             "location":"[parameters('ADFLocation')]",
             "properties": {
                 "repoConfiguration": {

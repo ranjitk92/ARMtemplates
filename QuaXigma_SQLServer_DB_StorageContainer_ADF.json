@@ -184,38 +184,6 @@
             }
         },
         {
-            "type": "Microsoft.DataFactory/factories/linkedservices",
-            "apiVersion": "2018-06-01",
-            "name": "[concat(parameters('factoryName'),'ADF-DEV','/AzureKeyVaultLinkedService')]",
-            "properties": {
-                "description":"Linked service for Azure Key Vault.",
-                "type": "AzureKeyVault",
-                "typeProperties": {
-                    "baseUrl": "[parameters('AzureKeyVaultBaseUrl')]"
-                }
-            },
-            "dependsOn": []
-        },
-        {
-            "type": "Microsoft.DataFactory/factories/linkedservices",
-            "apiVersion": "2018-06-01",
-            "name": "[concat(parameters('factoryName'),'ADF-DEV','/AzureContainerLinkedService')]",
-            "properties": {
-                "description":"Linked service for storage container.",
-                "type": "AzureBlobStorage",
-                "typeProperties":{
-                    "connectionString": {
-                        "type":"AzureKeyVaultSecret",
-                        "store":{
-                            "referenceName":"AzureKeyVaultLinkedService",
-                            "type":"LinkedServiceReference"
-                        },
-                        "secretName":"[parameters('AzureStorageAccountConnectionString')]"
-                    }
-                }
-            }
-        },
-        {
             "type":"Microsoft.DataFactory/factories",
             "apiVersion": "2018-06-01",
             "name": "[concat(parameters('factoryName'),'ADF-TEST')]",

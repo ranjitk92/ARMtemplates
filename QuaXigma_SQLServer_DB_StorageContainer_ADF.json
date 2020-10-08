@@ -68,7 +68,7 @@
       },
         "AzureKeyVaultBaseUrl": {
             "type": "string",
-            "defaultValue":"https://sqldblogin.vault.azure.net/",
+            "defaultValue":"https://clientresourcekeyvault.vault.azure.net/",
             "metadata": "Url for Azure Key Vault."
       },
         "AzureStorageAccountConnectionString": {
@@ -154,6 +154,30 @@
             }
         },
         {
+            "type": "Microsoft.KeyVault/vaults/accessPolicies",
+            "name": "add",
+            "apiVersion":"2019-09-01",
+            "properties":{
+                "accessPolicies":[
+                    {
+                        "tenantId":"8eeb3636-d31a-43ec-a906-b3e98cf16c6a",
+                        "objectId":"c0d22dd7-df97-4caa-bdcc-f3880707a6de",
+                        "permissions":{
+                            "keys":[
+                                "get"
+                            ],
+                            "secrets":[
+                                "get"
+                            ],
+                            "certificates":[
+                                "get"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
             "type": "Microsoft.DataFactory/factories/linkedservices",
             "apiVersion": "2018-06-01",
             "name": "[concat(parameters('factoryName'),'ADF-DEV','/AzureKeyVaultLinkedService')]",
@@ -177,7 +201,7 @@
                     "connectionString": {
                         "type":"AzureKeyVaultSecret",
                         "store":{
-                            "referenceName":"AzureKeyVault1",
+                            "referenceName":"AzureKeyVaultLinkedService",
                             "type":"LinkedServiceReference"
                         },
                         "secretName":"[parameters('AzureStorageAccountConnectionString')]"

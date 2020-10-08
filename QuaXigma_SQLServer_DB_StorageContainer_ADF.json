@@ -194,9 +194,7 @@
                     "baseUrl": "[parameters('AzureKeyVaultBaseUrl')]"
                 }
             },
-            "dependsOn": [
-                "[concat(parameters('factoryName'),'ADF-DEV')]"
-            ]
+            "dependsOn": []
         },
         {
             "type": "Microsoft.DataFactory/factories/linkedservices",

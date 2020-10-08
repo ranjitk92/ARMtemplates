@@ -193,8 +193,7 @@
                 "typeProperties": {
                     "baseUrl": "[parameters('AzureKeyVaultBaseUrl')]"
                 }
-            },
-            "dependsOn": []
+            }
         },
         {
             "type": "Microsoft.DataFactory/factories/linkedservices",
@@ -213,10 +212,7 @@
                         "secretName":"[parameters('AzureStorageAccountConnectionString')]"
                     }
                 }
-            },
-            "dependsOn": [
-                "[concat(parameters('factoryName'),'ADF-DEV')]"
-            ]
+            }
         },
         {
             "type":"Microsoft.DataFactory/factories",

@@ -59,7 +59,7 @@
       "factoryName": {
             "type": "string",
             "metadata": "Default Factory Name",
-            "defaultValue":"ADFnameRK"
+            "defaultValue":"alexdonjohnADF-DEV"
       },
         "ADFLocation": {
             "type": "string",
@@ -186,7 +186,7 @@
         {
             "type": "Microsoft.DataFactory/factories/linkedservices",
             "apiVersion": "2018-06-01",
-            "name": "[concat(parameters('factoryName'),'ADF-DEV','/AzureKeyVaultLinkedService')]",
+            "name": "[concat(parameters('factoryName'),'/AzureKeyVaultLinkedService')]",
             "properties": {
                 "description":"Linked service for Azure Key Vault.",
                 "type": "AzureKeyVault",
@@ -199,7 +199,7 @@
         {
             "type": "Microsoft.DataFactory/factories/linkedservices",
             "apiVersion": "2018-06-01",
-            "name": "[concat(parameters('factoryName'),'ADF-DEV','/AzureContainerLinkedService')]",
+            "name": "[concat(parameters('factoryName'),'/AzureContainerLinkedService')]",
             "properties": {
                 "description":"Linked service for storage container.",
                 "type": "AzureBlobStorage",

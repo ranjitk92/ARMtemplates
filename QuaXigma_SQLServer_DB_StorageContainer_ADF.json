@@ -95,7 +95,7 @@
           "type": "SystemAssigned"
                     },
         "properties": {
-          "administratorLogin": "ranjit1",
+          "administratorLogin": "QuaXigmalogin",
           "administratorLoginPassword": "[parameters('administratorPassword')]",
           "version": "12.0",
           "minimalTlsVersion": "1.0",

@@ -180,7 +180,7 @@
                             "referenceName":"AzureKeyVault1",
                             "type":"LinkedServiceReference"
                         },
-                        "secretName":"[parameters('AzureContainerKeyVault')]"
+                        "secretName":"[parameters('AzureStorageAccountConnectionString')]"
                     }
                 }
             }

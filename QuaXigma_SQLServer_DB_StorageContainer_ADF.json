@@ -75,7 +75,12 @@
             "type": "string",
             "defaultValue":"AzureStorageAccountKey",
             "metadata":"Connection string inside Key Vault"
-      }
+      },
+        "AzureKeyVaultName": {
+            "type":"string",
+            "defaultValue":"ClientResourceKeyVault",
+            "metadata":"Name of the Azure Key Vault used for access policy modifications."
+        }
 
 },
 
@@ -155,7 +160,7 @@
         },
         {
             "type": "Microsoft.KeyVault/vaults/accessPolicies",
-            "name": "add",
+            "name": "[concat(parameters('AzureKeyVaultName'),'/add')]",
             "apiVersion":"2019-09-01",
             "properties":{
                 "accessPolicies":[

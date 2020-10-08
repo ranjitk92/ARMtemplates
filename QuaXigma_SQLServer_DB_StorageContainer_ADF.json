@@ -96,7 +96,7 @@
                     },
         "properties": {
           "administratorLogin": "QuaXigmalogin",
-          "administratorLoginPassword": "ranjit123!@#",
+          "administratorLoginPassword": "Ranjit123",
           "version": "12.0",
           "minimalTlsVersion": "1.0",
           "publicNetworkAccess": "Enabled"

@@ -203,13 +203,14 @@
                 "description":"Linked service for storage container.",
                 "type": "AzureBlobStorage",
                 "typeProperties":{
-                    "connectionString": {
+                    "connectionString": "DefaultEndpointsProtocol=https;AccountName=clientliststorage2",
+                    "accountKey": {
                         "type":"AzureKeyVaultSecret",
                         "store":{
                             "referenceName":"AzureKeyVaultLinkedService",
                             "type":"LinkedServiceReference"
                         },
-                        "secretName":"[parameters('AzureStorageAccountConnectionString')]"
+                        "secretName":"AzureStorageAccountKey"
                     }
                 }
             }
